@@ -1,0 +1,172 @@
+function applyClass(elementId, className) {
+    const divElement = document.getElementById(elementId);
+    if (divElement) {
+        divElement.classList.remove('default-bg', 'blue-bg', 'red-bg');
+        divElement.classList.add(className);
+    }
+}
+
+function generateRandomRGBColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const bgColor = `rgb(${r}, ${g}, ${b})`;
+    document.body.style.backgroundColor = bgColor;
+    console.log(`New background color: ${bgColor}`);
+}
+
+const numberToCheck = 10900;
+console.log(
+    numberToCheck % 3 === 0
+        ? `${numberToCheck} is a multiple of 3.`
+        : `${numberToCheck} is not a multiple of 3.`
+);
+
+const mainString = 'i am learning javascript';
+const subWord = 'js';
+console.log(
+    mainString.includes(subWord)
+        ? 'The sub-word exists.'
+        : 'The sub-word does not exist.'
+);
+
+function calculateCompoundInterest(principal, rate, years) {
+    const decimalRate = rate / 100;
+    const amount = principal * Math.pow(1 + decimalRate, years);
+    return amount.toFixed(2);
+}
+
+const compoundP = 10000;
+const compoundR = 5;
+const compoundT = 3;
+const finalAmount = calculateCompoundInterest(compoundP, compoundR, compoundT);
+console.log(`Compound Interest Amount after 3 years: $${finalAmount}`);
+
+function displayEvenNumbers() {
+    const n = Number(prompt('Enter a number to display even numbers up to:'));
+    if (isNaN(n)) {
+        console.log('Invalid input.');
+        return;
+    }
+    for (let i = 0; i <= n; i++) {
+        if (i % 2 === 0) console.log(i);
+    }
+}
+displayEvenNumbers();
+
+const s = 'e';
+const vowels = ['a','e','i','o','u','A','E','I','O','U'];
+console.log(vowels.includes(s) ? `${s} is a vowel` : `${s} is a consonant`);
+
+let evenCount = 0;
+let oddCount = 0;
+for (let i = 1; i <= 999; i++) {
+    i % 2 === 0 ? evenCount++ : oddCount++;
+}
+
+function countOccurrences(str, char) {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === char) count++;
+    }
+    return count;
+}
+
+const nums1 = [1, 9, 8];
+const sum = nums1.reduce((a, b) => a + b, 0);
+const average = sum / nums1.length;
+console.log(nums1, sum, average);
+
+function findLargestNumber(arr) {
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) max = arr[i];
+    }
+    return max;
+}
+
+const nums2 = [22, 5, 40, 60, 100, 80];
+console.log('Largest:', findLargestNumber(nums2));
+
+const cardData = [
+    { title: 'Card 1', content: 'This is the first card in the row.' },
+    { title: 'Card 2', content: 'This is the second card in the row.' },
+    { title: 'Card 3', content: 'This is the third card in the row.' }
+];
+
+const cardContainer = document.getElementById('cardContainer');
+
+function displayCards(data) {
+    if (!cardContainer) return;
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h2>${item.title}</h2><p>${item.content}</p>`;
+        cardContainer.appendChild(card);
+    });
+}
+displayCards(cardData);
+
+function validateForm(event) {
+    event.preventDefault();
+    document.querySelectorAll('.error').forEach(e => e.textContent = '');
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const contact = document.getElementById('contact').value;
+    const dob = document.getElementById('dob').value;
+    const designation = document.getElementById('designation').value;
+    const files = document.getElementById('files').files;
+
+    let valid = true;
+
+    if (!/^[A-Za-z\s]+$/.test(name)) valid = false;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) valid = false;
+    if (!/^[0-9]{10}$/.test(contact)) valid = false;
+
+    if (!dob) valid = false;
+    else {
+        const age = new Date().getFullYear() - new Date(dob).getFullYear();
+        if (age < 18) valid = false;
+    }
+
+    if (designation === '') valid = false;
+    if (files.length === 0) valid = false;
+
+    if (valid) alert('Form submitted successfully!');
+}
+
+function displayDataInConsole(data) {
+    console.log('Data received:', data);
+    alert('Data received: ' + data);
+}
+
+function getUserData(callback) {
+    const data = 'Sample User Data';
+    callback(data);
+}
+getUserData(displayDataInConsole);
+
+const nums3 = [10, 20, 15, 25, 30, 40];
+const firstValueAbove20 = nums3.find(n => n > 20);
+console.log(firstValueAbove20);
+
+const data = [
+    { id: 1, name: 'Item A' },
+    { id: 2, name: 'Item B' },
+    { id: 3, name: 'Item C' },
+    { id: 4, name: 'Item D' },
+    { id: 5, name: 'Item E' }
+];
+
+const ids = data.map(item => item.id);
+
+function getRandomId(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const randomId = getRandomId(ids);
+const filteredObject = data.find(item => item.id === randomId);
+
+console.log('Random ID:', randomId);
+console.log('Filtered Object:', filteredObject);
