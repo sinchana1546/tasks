@@ -1,36 +1,37 @@
 // 1. create a method to add background color to div element
-function applyClass(elementId, className) {
-    const divElement = document.getElementById(elementId);
-    if (divElement) {
-        divElement.style.backgroundColor = className;
-    }
+function addBgColor(divId, color) {
+    const div = document.getElementById(divId);
+    if (div) div.style.backgroundColor = color;
 }
 
 // 4. write function to generate random background color of body (hint: Math.random())
-function generateRandomRGBColor() {
+function randomBodyBgColor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
-    document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
 }
 
 // 5. onload of your webpage, display modal (bootstrap 4 or 5)
 window.onload = function () {
-    if (document.getElementById('myModal')) {
-        new bootstrap.Modal(document.getElementById('myModal')).show();
+    if (document.getElementById("myModal")) {
+        new bootstrap.Modal(document.getElementById("myModal")).show();
     }
 };
 
+
+
 // ▪ Conditional Statements
-// Task 15:
+// Task 15
+
 // 1. given number is multiple of 3 or not e.g.10900
-const numberToCheck = 10900;
-console.log(numberToCheck % 3 === 0 ? "Multiple of 3" : "Not multiple of 3");
+const num = 10900;
+console.log(num % 3 === 0 ? "Multiple of 3" : "Not multiple of 3");
 
 // 2. check particular sub-word exist in a string or not
-const mainString = "i am learning js";
-const subWord = "js";
-console.log(mainString.includes(subWord) ? "Exists" : "Does not exist");
+const str = "i am learning js";
+const word = "js";
+console.log(str.includes(word) ? "Exists" : "Does not exist");
 
 // 3. calculate complex interest ((p/r )* t) / 100 )
 function calculateInterest(p, r, t) {
@@ -38,20 +39,23 @@ function calculateInterest(p, r, t) {
 }
 console.log(calculateInterest(10000, 5, 3));
 
+
+
 // ▪ Loops
-// Task 16:
-// 1. display even numbers upto n number (ask user for number)
-function displayEvenNumbers(n) {
+// Task 16
+
+// 1. display even numbers upto n number
+function displayEven(n) {
     for (let i = 0; i <= n; i++) {
         if (i % 2 === 0) console.log(i);
     }
 }
-displayEvenNumbers(10);
+displayEven(10);
 
 // 2. ask user for the input, whether char is vowel or consonant
-const ch = 'e';
+const char = 'e';
 const vowels = ['a','e','i','o','u','A','E','I','O','U'];
-console.log(vowels.includes(ch) ? "Vowel" : "Consonant");
+console.log(vowels.includes(char) ? "Vowel" : "Consonant");
 
 // 3. count of even and odd number from 1 to 999
 let evenCount = 0;
@@ -61,48 +65,53 @@ for (let i = 1; i <= 999; i++) {
 }
 
 // 4. count occurrence of a particular character in a string
-function countOccurrences(str, char) {
+function countChar(str, ch) {
     let count = 0;
     for (let c of str) {
-        if (c === char) count++;
+        if (c === ch) count++;
     }
     return count;
 }
-console.log(countOccurrences("hello", "l"));
+console.log(countChar("hello", "l"));
 
 // 5. sum and average of array elements
 const arr1 = [1, 9, 8];
 const sum = arr1.reduce((a, b) => a + b, 0);
 console.log(sum, sum / arr1.length);
 
-// 6. largest number in an array (do with loops)
-function findLargest(arr) {
+// 6. largest number in an array
+function largestNumber(arr) {
     let max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) max = arr[i];
+    for (let n of arr) {
+        if (n > max) max = n;
     }
     return max;
 }
-console.log(findLargest([22, 5, 40, 60, 100, 80]));
+console.log(largestNumber([22, 5, 40, 60, 100, 80]));
+
+
 
 // ▪ DOM, BOM, Hoisting
 // Task 17: Display 3 cards in a row through js
-const cardData = [
+const cards = [
     { title: "Card 1", content: "First card" },
     { title: "Card 2", content: "Second card" },
     { title: "Card 3", content: "Third card" }
 ];
-const cardContainer = document.getElementById("cardContainer");
-if (cardContainer) {
-    cardData.forEach(c => {
+
+const container = document.getElementById("cardContainer");
+if (container) {
+    cards.forEach(card => {
         const div = document.createElement("div");
-        div.innerHTML = `<h3>${c.title}</h3><p>${c.content}</p>`;
-        cardContainer.appendChild(div);
+        div.innerHTML = `<h3>${card.title}</h3><p>${card.content}</p>`;
+        container.appendChild(div);
     });
 }
 
+
+
 // ▪ Forms, Form Validations, RegExp
-// Task 18: create a form and validate it
+// Task 18
 function validateForm() {
     const email = document.getElementById("email").value;
     const contact = document.getElementById("contact").value;
@@ -111,13 +120,16 @@ function validateForm() {
     return emailRegex.test(email) && contactRegex.test(contact);
 }
 
+
+
 // ▪ This Keyword, Debugging
 // ▪ Asynchronous- Promise, Callback, Asynchronous, API call
-// Task 19:
+// Task 19
+
 // 1. look for api and display movie records in the form of cards in UI
 async function fetchMovies() {
-    const res = await fetch("https://www.omdbapi.com/?s=avengers&apikey=demo");
-    const data = await res.json();
+    const response = await fetch("https://www.omdbapi.com/?s=avengers&apikey=demo");
+    const data = await response.json();
     console.log(data);
 }
 
@@ -128,8 +140,11 @@ function getUserData(callback) {
 }
 getUserData(data => console.log(data));
 
+
+
 // ▪ Advance JavaScript (ES6)
-// Task 20:
+// Task 20
+
 // 1. get the value of the first element in an array that has value greater than 20
 // 2. get the value of the first element in an array that has value less than 20
 const arr2 = [10, 20, 15, 25, 30, 40];
@@ -137,12 +152,12 @@ console.log(arr2.find(n => n > 20));
 console.log(arr2.find(n => n < 20));
 
 // 3. filter data based on a id(property)
-const dataArr = [
+const objArr = [
     { id: 1, name: "A" },
     { id: 2, name: "B" },
     { id: 3, name: "C" }
 ];
-console.log(dataArr.find(obj => obj.id === 2));
+console.log(objArr.find(o => o.id === 2));
 
 // 4. check element is odd or even in an array
 const nums = [90, 89, 56, 45];
